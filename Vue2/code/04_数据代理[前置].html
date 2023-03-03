@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../assets/vue.js"></script>
+  </head>
+  <body></body>
+  <script>
+    // 需求：有一个person对象，它的age属性值必须跟随number变量变动、
+
+    let number = 15;
+    const person = {};
+    Object.defineProperty(person, 'age', {
+      // getter函数：每次读取person.age时都会调用该函数，并且返回值为age值
+      get: function () {
+        return number;
+      },
+      // setter函数：每次设置person.age时都会调用该函数，并且参数为修改值
+      set: function (value) {
+        number = value   // 如果不加这一行，是没法person.age = xxx 这样修改的(因为上面getter函数把age的依赖一直锁定为变量number了)
+      },
+    });
+    number = 12;
+    console.log(person.age);
+  </script>
+</html>

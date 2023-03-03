@@ -5,20 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="../assets/vue.js"></script>
   </head>
   <body>
-    <div id="app">
-      <button @click="count++">Count is: {{ count }}</button>
+    <div id="root">
+      <div>{{name}}</div>
     </div>
   </body>
   <script>
-    Vue.createApp({
+    new Vue({
       data() {
         return {
-          count: 0,
+          name: '大菊',
         };
       },
-    }).mount('#app');
+    }).$mount('#root');
+    // data由对象变成了函数
+    // el 由属性变成了在Vue实例后通过$mount来挂在
   </script>
 </html>

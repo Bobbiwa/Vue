@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../assets/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <h1>插值语法：</h1>
+      <span>{{name}}</span>
+      <hr />
+      <h1>指令语法：</h1>
+      <a :href="url">百度</a>
+      <!-- v-bind 用于数据绑定 将url变量绑定给a标签里的href属性 -->
+    </div>
+  </body>
+  <script>
+    new Vue({
+      el: '#root',
+      data: {
+        name: '小明',
+        url: 'https://www.baidu.com/',
+      },
+    });
+    // 原理：data里的数据全都会放到Vue实例身上
+    //      而插值语法可以读Vue实例身上的东西
+  </script>
+</html>
