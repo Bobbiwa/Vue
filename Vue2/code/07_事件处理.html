@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../assets/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <h1>欢迎来到{{school}}学习</h1>
+      <!-- 不带参 -->
+      <button @click="handleClick">Click</button>
+      <!-- 带参 (这里和React不同，Vue这么带参数不会立即执行函数)-->
+      <button @click="handleClick2('params',$event)">Click2</button>
+    </div>
+  </body>
+  <script>
+    new Vue({
+      data() {
+        return {
+          school: '邮电大学',
+        };
+      },
+      methods: {
+        handleClick(e) {
+          alert(e.target);
+        },
+        handleClick2(params, e) {
+          alert(params);
+          alert(e.target);
+
+          console.log(this); //vm
+        },
+      },
+    }).$mount('#root');
+  </script>
+</html>

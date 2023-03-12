@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../assets/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <form action="">
+        <div>
+          <span>姓：</span>
+          <input type="text" v-model="firstName" />
+        </div>
+        <div>
+          <span>名：</span>
+          <input type="text" v-model="lastName" />
+        </div>
+        <p>全名：{{getFullName}}</p>
+      </form>
+    </div>
+  </body>
+  <script>
+    /*
+    1.计算属性：要用的属性不存在，要通过已有的属性计算得来
+    2.get函数什么时候执行：(1)初次读取时 (2)当依赖项(firstName/lastName)发生改变时
+    3.优点：与methods相比，内部有缓存机制,效率更高。
+    4.计算属性最攻会出现在vm身上，插值语法直接读就好了
+    5.如果要修改计算属性，那么得用set方法来修改依赖项
+    */ 
+    const vm = new Vue({
+      data() {
+        return {
+          firstName: '',
+          lastName: '',
+        };
+      },
+      computed: {
+        getFullName: {
+          get() {
+            return `${this.firstName}-${this.lastName}`;
+          },
+          set(value) {
+            this.firstName = value.split('-')[0];
+            this.lastName = value.split('-')[1];
+          },
+        },
+      },
+    }).$mount('#root');
+  </script>
+</html>

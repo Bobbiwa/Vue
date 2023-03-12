@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../assets/vue.js"></script>
+  </head>
+  <body>
+    <!-- 
+      Vue中的事件修饰符：
+          1. @click.prevent：阻止默认事件
+          2. @click.stop：阻止冒泡
+          3. @click.once：只触发一次
+    -->
+    <div id="root">
+      <a href="https://www.baidu.com/" @click.prevent="handleClick">百度</a>
+    </div>
+  </body>
+  <script>
+    new Vue({
+      data() {
+        return {
+          school: '邮电大学',
+        };
+      },
+      methods: {
+        handleClick(e) {
+          alert(e.target);
+        },
+      },
+    }).$mount('#root');
+  </script>
+</html>

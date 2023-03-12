@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../assets/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <h1>今天天气很{{info}}</h1>
+      <button @click="handleClick">switch</button>
+    </div>
+  </body>
+  <script>
+    const vm = new Vue({
+      data() {
+        return {
+          isHot: true,
+        };
+      },
+      computed: {
+        info() {
+          return this.isHot ? '炎热' : '凉爽';
+        },
+      },
+      methods: {
+        handleClick() {
+          this.isHot = !this.isHot;
+        },
+      },
+      // watch: {
+      //   isHot: {
+      //     handler(cur, pre) {
+      //       console.log('当前值', cur);
+      //       console.log('之前值', pre);
+      //     },
+      //   },
+      //   info: {
+      //     handler(cur, pre) {
+      //       console.log('当前值', cur);
+      //       console.log('之前值', pre);
+      //     },
+      //   },
+      // },
+    }).$mount('#root');
+
+    // 写法二：(适用于开始还不知道监视什么的时候)
+    vm.$watch('isHot', {
+      immediate: true, //初始化时让handler调用一下 （默认false）
+      handler(cur, pre) {
+        console.log('当前值', cur);
+        console.log('之前值', pre);
+      },
+    });
+  </script>
+</html>
